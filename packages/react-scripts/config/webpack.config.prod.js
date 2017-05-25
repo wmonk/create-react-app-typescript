@@ -18,7 +18,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
@@ -81,16 +80,18 @@ module.exports = {
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
-    // We read `NODE_PATH` environment variable in `paths.js` and pass paths here.
     // We placed these paths second because we want `node_modules` to "win"
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
-    modules: ['node_modules', paths.appNodeModules].concat(paths.nodePaths),
+    modules: ['node_modules', paths.appNodeModules].concat(
+      // It is guaranteed to exist because we tweak it in `env.js`
+      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+    ),
     // These are the reasonable defaults supported by the Node ecosystem.
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
     alias: {
       // @remove-on-eject-begin
       // Resolve Babel runtime relative to react-scripts.
@@ -122,27 +123,17 @@ module.exports = {
       // { parser: { requireEnsure: false } },
 
       // First, run the linter.
-      // It's important to do this before Babel processes the JS.
+      // It's important to do this before Typescript runs.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
+        loader: require.resolve('tslint-loader'),
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              // @remove-on-eject-begin
-              // TODO: consider separate config for production,
-              // e.g. to enable no-console and no-debugger only in production.
-              baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
-              },
-              ignore: false,
-              useEslintrc: false,
-              // @remove-on-eject-end
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
+        include: paths.appSrc,
+      },
+      {
+        test: /\.js$/,
+        loader: require.resolve('source-map-loader'),
+        enforce: 'pre',
         include: paths.appSrc,
       },
       // ** ADDING/UPDATING LOADERS **
@@ -157,6 +148,7 @@ module.exports = {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
+          /\.(ts|tsx)$/,
           /\.css$/,
           /\.json$/,
           /\.bmp$/,
@@ -179,17 +171,11 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
-      // Process JS with Babel.
+      // Compile .tsx?
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         include: paths.appSrc,
-        loader: require.resolve('babel-loader'),
-        // @remove-on-eject-begin
-        options: {
-          babelrc: false,
-          presets: [require.resolve('babel-preset-react-app')],
-        },
-        // @remove-on-eject-end
+        loader: require.resolve('ts-loader'),
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -319,6 +305,9 @@ module.exports = {
       minify: true,
       navigateFallback: publicUrl + '/index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      // Work around Windows path issue in SWPrecacheWebpackPlugin:
+      // https://github.com/facebookincubator/create-react-app/issues/2235
+      stripPrefix: paths.appBuild.replace(/\\/g, '/') + '/',
     }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical

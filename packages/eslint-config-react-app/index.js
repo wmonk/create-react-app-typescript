@@ -210,7 +210,6 @@ module.exports = {
     ],
     'no-with': 'warn',
     'no-whitespace-before-property': 'warn',
-    'operator-assignment': ['warn', 'always'],
     radix: 'warn',
     'require-yield': 'warn',
     'rest-spread-spacing': ['warn', 'never'],
@@ -283,7 +282,8 @@ module.exports = {
 
     // https://github.com/gajus/eslint-plugin-flowtype
     'flowtype/define-flow-type': 'warn',
-    'flowtype/require-valid-file-annotation': 'warn',
+    // TODO: Reenable once https://github.com/gajus/eslint-plugin-flowtype/issues/165 is fixed
+    //'flowtype/require-valid-file-annotation': 'warn',
     'flowtype/use-flow-type': 'warn',
   },
 };
