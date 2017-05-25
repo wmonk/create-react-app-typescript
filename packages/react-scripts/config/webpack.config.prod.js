@@ -176,6 +176,9 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         include: paths.appSrc,
         loader: require.resolve('awesome-typescript-loader'),
+        query: {
+          useBabel: true,
+        },
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
