@@ -178,7 +178,7 @@ module.exports = {
         loader: require.resolve('awesome-typescript-loader'),
         query: {
           useBabel: true,
-            configFileName: path.join(paths.appSrc, 'tsconfig.json')
+          configFileName: path.join(paths.appTemplate, 'tsconfig.json'),
         },
       },
       // The notation here is somewhat confusing.
