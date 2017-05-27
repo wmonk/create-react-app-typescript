@@ -107,7 +107,7 @@ if (
     appHtml: resolveOwn('template/public/index.html'),
     appIndexJs: resolveOwn('template/src/index.tsx'),
     appPackageJson: resolveOwn('package.json'),
-    appTsConfig: resolveOwn('tsconfig.json'),
+    appTsConfig: resolveOwn('template/tsconfig.json'),
     appSrc: resolveOwn('template/src'),
     yarnLockFile: resolveOwn('template/yarn.lock'),
     testsSetup: resolveOwn('template/src/setupTests.ts'),
