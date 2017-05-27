@@ -188,7 +188,7 @@ module.exports = {
         loader: require.resolve('awesome-typescript-loader'),
         query: {
           useBabel: true,
-          configFileName: path.join(paths.appTemplate, 'tsconfig.json'),
+          configFileName: paths.appTsConfig,
         },
       },
       // "postcss" loader applies autoprefixer to our CSS.
