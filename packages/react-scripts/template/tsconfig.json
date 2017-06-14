@@ -8,6 +8,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
+	"rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -19,6 +20,7 @@
   "exclude": [
     "node_modules",
     "build",
+	"config",
     "scripts",
     "acceptance-tests",
     "webpack",
