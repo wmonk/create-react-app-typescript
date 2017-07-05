@@ -15,7 +15,8 @@ let compilerConfig = {
 
 if (fs.existsSync(tsconfigPath)) {
   try {
-    const tsconfig = tsc.readConfigFile(tsconfigPath).config;
+    const tsconfig = tsc.readConfigFile(tsconfigPath, name =>
+      tsc.sys.readFile(name)).config;
 
     if (tsconfig && tsconfig.compilerOptions) {
       compilerConfig = tsconfig.compilerOptions;
