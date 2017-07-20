@@ -1,0 +1,12 @@
+{
+  "name": "ts-lint-create-react-app-typescript",
+  "version": "1.0.0",
+  "description": "TS Lint configuration for create-react-app-typescript",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=6"
+  },
+  "bugs": {
+    "url": "https://github.com/wmonk/create-react-app/issues"
+  }
+}
