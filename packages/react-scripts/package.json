@@ -44,6 +44,7 @@
     "ts-jest": "^20.0.7",
     "ts-loader": "^2.2.1",
     "tslint": "^5.2.0",
+    "tslint-create-react-app-typescript": "^1.0.0",
     "tslint-loader": "^3.5.3",
     "tslint-react": "^3.0.0",
     "typescript": "~2.4.0",
