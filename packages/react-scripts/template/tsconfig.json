@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
+    "outDir": "./",
+    "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
-    "allowJs": true,
+    "declaration": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",

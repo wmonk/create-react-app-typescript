@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts-ts",
-  "version": "2.6.0",
+  "name": "react-scripts-ts-component",
+  "version": "0.1.1",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "repository": "hktonylee/create-react-app-typescript-component",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/wmonk/create-react-app/issues"
+    "url": "https://github.com/hktonylee/create-react-app-typescript-component/issues"
   },
   "files": [
     "bin",
@@ -19,7 +19,7 @@
     "utils"
   ],
   "bin": {
-    "react-scripts-ts": "./bin/react-scripts-ts.js"
+    "react-scripts-ts-component": "./bin/react-scripts-ts-component.js"
   },
   "dependencies": {
     "autoprefixer": "7.1.1",

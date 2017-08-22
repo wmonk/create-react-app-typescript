@@ -79,15 +79,11 @@
   Please fill in all the relevant fields by running these commands in terminal.
 -->
 
-1. `npm ls react-scripts-ts` (if you haven’t ejected): 
+1. `npm ls react-scripts-ts-component` (if you haven’t ejected): 
 2. `node -v`: 
 3. `npm -v`:
 4. `yarn --version` (if you use Yarn):
-<<<<<<< HEAD
-5. `npm ls react-scripts` (if you haven’t ejected): 
-=======
-3. `npm ls react-scripts-ts` (if you haven’t ejected): 
->>>>>>> Fix Code Review
+3. `npm ls react-scripts-ts-component` (if you haven’t ejected): 
 
 Then, specify:
 

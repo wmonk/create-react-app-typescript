@@ -39,11 +39,15 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts-ts start',
-    build: 'react-scripts-ts build',
-    test: 'react-scripts-ts test --env=jsdom',
-    eject: 'react-scripts-ts eject',
+    start: 'react-scripts-ts-component start',
+    build: 'react-scripts-ts-component build',
+    test: 'react-scripts-ts-component test --env=jsdom',
+    eject: 'react-scripts-ts-component eject',
   };
+
+  app.appPackage.style = './dist/index.css';
+  app.appPackage.types = './dist/index.d.ts';
+  app.appPackage.main = './dist/index.js';
 
   console.log(appPackage);
 
