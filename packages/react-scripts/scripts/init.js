@@ -45,6 +45,10 @@ module.exports = function(
     eject: 'react-scripts-ts-component eject',
   };
 
+  app.appPackage.style = './dist/index.css';
+  app.appPackage.types = './dist/index.d.ts';
+  app.appPackage.main = './dist/index.js';
+
   console.log(appPackage);
 
   fs.writeFileSync(
