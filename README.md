@@ -9,7 +9,7 @@ _Do you know react and want to try out typescript? Or do you know typescript and
 ```sh
 npm install -g create-react-app
 
-create-react-app my-app --scripts-version=react-scripts-ts
+create-react-app my-app --scripts-version=react-scripts-ts-component
 cd my-app/
 npm start
 ```
