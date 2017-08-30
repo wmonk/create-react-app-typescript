@@ -37,6 +37,7 @@ module.exports = (resolve, rootDir) => {
       'web.jsx',
       'jsx',
       'json',
+      'node',
     ],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.ts?(x)',
@@ -59,7 +60,7 @@ module.exports = (resolve, rootDir) => {
       'ts-jest': {
         tsConfigFile: paths.appTsTestConfig,
       },
-    }
+    },
   };
   if (rootDir) {
     config.rootDir = rootDir;
