@@ -45,9 +45,11 @@ module.exports = (resolve, rootDir) => {
     testEnvironment: 'node',
     testURL: 'http://localhost',
     transform: {
+      '^.+\\.(js|jsx|ts|tsx)$': resolve('config/jest/typescriptTransform.js'),
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
-      '^.+\\.tsx?$': resolve('config/jest/typescriptTransform.js'),
-      '^(?!.*\\.(css|json)$)': resolve('config/jest/fileTransform.js'),
+      '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': resolve(
+        'config/jest/fileTransform.js'
+      ),
     },
     transformIgnorePatterns: [
       '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
@@ -59,7 +61,7 @@ module.exports = (resolve, rootDir) => {
       'ts-jest': {
         tsConfigFile: paths.appTsTestConfig,
       },
-    }
+    },
   };
   if (rootDir) {
     config.rootDir = rootDir;
