@@ -54,13 +54,13 @@ module.exports = (resolve, rootDir) => {
       'web.jsx',
       'jsx',
       'json',
-      'node'
+      'node',
     ],
     globals: {
       'ts-jest': {
         tsConfigFile: paths.appTsTestConfig,
       },
-    }
+    },
   };
   if (rootDir) {
     config.rootDir = rootDir;
