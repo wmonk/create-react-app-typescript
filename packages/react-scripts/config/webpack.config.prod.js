@@ -183,20 +183,13 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         include: paths.appSrc,
         use: [
-          { loader: 'cache-loader' },
           {
-              loader: 'thread-loader',
-              options: {
-                  // there should be 1 cpu for the fork-ts-checker-webpack-plugin
-                  workers: require('os').cpus().length - 1,
-              },
+            loader: 'ts-loader',
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
+            },
           },
-          {
-              loader: 'ts-loader',
-              options: {
-                  happyPackMode: true // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
-              }
-          }
         ],
       },
       // The notation here is somewhat confusing.
@@ -351,7 +344,11 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // Perform type checking and linting in a separate process to speed up compilation
-    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true, async: false, tslint: true }),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      tsconfig: paths.appTsConfig,
+      tslint: paths.appTsLint,
+    }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

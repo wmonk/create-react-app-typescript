@@ -114,6 +114,7 @@ if (
     testsSetup: resolveOwn('template/src/setupTests.ts'),
     appNodeModules: resolveOwn('node_modules'),
     appTsConfig: resolveOwn('template/tsconfig.json'),
+    appTsLint: resolveOwn('template/tslint.json'),
     appTsTestConfig: resolveOwn('template/tsconfig.test.json'),
     publicUrl: getPublicUrl(resolveOwn('package.json')),
     servedPath: getServedPath(resolveOwn('package.json')),
