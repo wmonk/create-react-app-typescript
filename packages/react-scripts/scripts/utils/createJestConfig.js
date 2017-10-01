@@ -27,17 +27,6 @@ module.exports = (resolve, rootDir) => {
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
     setupFiles: [resolve('config/polyfills.js')],
     setupTestFrameworkScriptFile: setupTestsFile,
-    moduleFileExtensions: [
-      'web.ts',
-      'ts',
-      'web.tsx',
-      'tsx',
-      'web.js',
-      'js',
-      'web.jsx',
-      'jsx',
-      'json',
-    ],
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.ts?(x)',
       '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
@@ -57,6 +46,18 @@ module.exports = (resolve, rootDir) => {
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
     },
+    moduleFileExtensions: [
+      'web.ts',
+      'ts',
+      'web.tsx',
+      'tsx',
+      'web.js',
+      'js',
+      'web.jsx',
+      'jsx',
+      'json',
+      'node'
+    ],
     globals: {
       'ts-jest': {
         tsConfigFile: paths.appTsTestConfig,
