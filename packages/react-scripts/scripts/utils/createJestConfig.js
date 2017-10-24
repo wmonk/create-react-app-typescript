@@ -11,8 +11,13 @@
 
 const fs = require('fs');
 const chalk = require('chalk');
+const path = require('path');
 const paths = require('../../config/paths');
-const envs = require('../../config/env');
+const getClientEnvironment = require('../../config/env');
+
+// Using development config publicUrl option when injecting environment variables.
+const publicUrl = '';
+getClientEnvironment(publicUrl);
 
 module.exports = (resolve, rootDir) => {
   // Use this instead of `paths.testsSetup` to avoid putting
@@ -42,8 +47,14 @@ module.exports = (resolve, rootDir) => {
     transformIgnorePatterns: [
       '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
     ],
-    moduleDirectories: ['node_modules'].concat(
-      process.env.REACT_APP_NODE_PATH.split(paths.appPath).filter(Boolean)
+    moduleDirectories: ['node_modules', paths.appNodeModules].concat(
+      // moduleDirectories uses a relative path
+      // Removing injected full path from REACT_APP_NODE_PATH (from env.js)
+      process.env.REACT_APP_NODE_PATH
+        .split(paths.appPath)
+        .join('')
+        .split(path.delimiter)
+        .filter(Boolean)
     ),
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
