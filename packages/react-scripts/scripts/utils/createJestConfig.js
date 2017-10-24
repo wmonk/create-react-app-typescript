@@ -44,7 +44,7 @@ module.exports = (resolve, rootDir) => {
     ],
     moduleDirectories: ['node_modules'].concat(
       process.env.REACT_APP_NODE_PATH.split(paths.appPath).filter(Boolean)
-		),
+    ),
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
     },
