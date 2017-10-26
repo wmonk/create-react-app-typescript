@@ -14,6 +14,9 @@ cd my-app/
 npm start
 ```
 
+## Using with a custom server
+If you have a server from which you plan to serve the React files, just run the install command in your existing project root directory, e.g. with the project name 'client'.  This will create a self-contained React project that you can serve statically.
+
 ## Migration
 
 In general, most upgrades won't require any migration steps to work, but if you experience problems after an upgrade, please file an issue, and we'll add it to the list of migration steps below.
