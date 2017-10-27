@@ -49,7 +49,9 @@
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
     "webpack-manifest-plugin": "1.2.1",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "react": "^15.5.4",
