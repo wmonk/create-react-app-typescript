@@ -146,6 +146,22 @@ module.exports = {
         enforce: 'pre',
         include: paths.appSrc,
       },
+      // [f2c] add scss loader
+      {
+        test: /\.scss$/,
+        include: paths.appSrc,
+        use: [
+          {
+            loader: require.resolve('style-loader'),
+          },
+          {
+            loader: require.resolve('css-loader'),
+          },
+          {
+            loader: require.resolve('sass-loader'),
+          },
+        ],
+      },
       {
         test: /\.js$/,
         loader: require.resolve('source-map-loader'),
@@ -171,7 +187,7 @@ module.exports = {
           {
             test: /\.(ts|tsx)$/,
             include: paths.appSrc,
-            loader: require.resolve('ts-loader')
+            loader: require.resolve('ts-loader'),
           },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
@@ -237,7 +253,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.js$/, /\.html$/, /\.json$/, /\.scss$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
