@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 /* @flow */
@@ -15,7 +13,20 @@ import NavigationBar from '../components/NavigationBar';
 import RuntimeError from './RuntimeError';
 import Footer from '../components/Footer';
 
-class RuntimeErrorContainer extends PureComponent {
+import type { ErrorRecord } from './RuntimeError';
+import type { ErrorLocation } from '../utils/parseCompileError';
+
+type Props = {|
+  errorRecords: ErrorRecord[],
+  close: () => void,
+  editorHandler: (errorLoc: ErrorLocation) => void,
+|};
+
+type State = {|
+  currentIndex: number,
+|};
+
+class RuntimeErrorContainer extends PureComponent<Props, State> {
   state = {
     currentIndex: 0,
   };
@@ -54,16 +65,17 @@ class RuntimeErrorContainer extends PureComponent {
     return (
       <ErrorOverlay shortcutHandler={this.shortcutHandler}>
         <CloseButton close={close} />
-        {totalErrors > 1 &&
+        {totalErrors > 1 && (
           <NavigationBar
             currentError={this.state.currentIndex + 1}
             totalErrors={totalErrors}
             previous={this.previous}
             next={this.next}
-          />}
+          />
+        )}
         <RuntimeError
           errorRecord={errorRecords[this.state.currentIndex]}
-          launchEditorEndpoint={this.props.launchEditorEndpoint}
+          editorHandler={this.props.editorHandler}
         />
         <Footer
           line1="This screen is visible only in development. It will not appear if the app crashes in production."
