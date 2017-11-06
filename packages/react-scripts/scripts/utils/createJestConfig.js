@@ -15,18 +15,18 @@ module.exports = (resolve, rootDir, isEjecting) => {
   // Use this instead of `paths.testsSetup` to avoid putting
   // an absolute filename into configuration after ejecting.
   const setupTestsFile = fs.existsSync(paths.testsSetup)
-    ? '<rootDir>/src/setupTests.js'
+    ? '<rootDir>/src/setupTests.ts'
     : undefined;
 
   // TODO: I don't know if it's safe or not to just use / as path separator
   // in Jest configs. We need help from somebody with Windows to determine this.
   const config = {
-    collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
+    collectCoverageFrom: ['src/**/*.{js,jsx,mjs,ts,tsx}'],
     setupFiles: [resolve('config/polyfills.js')],
     setupTestFrameworkScriptFile: setupTestsFile,
     testMatch: [
-      '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
-      '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}',
+      '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}',
+      '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs,ts,tsx}',
     ],
     testEnvironment: 'node',
     testURL: 'http://localhost',
@@ -35,11 +35,12 @@ module.exports = (resolve, rootDir, isEjecting) => {
         ? '<rootDir>/node_modules/babel-jest'
         : resolve('config/jest/babelTransform.js'),
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
+      '^.+\\.tsx?$': resolve('config/jest/typescriptTransform.js'),
       '^(?!.*\\.(js|jsx|mjs|css|json)$)': resolve(
         'config/jest/fileTransform.js'
       ),
     },
-    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$'],
+    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx|mjs)$'],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
     },
@@ -51,7 +52,16 @@ module.exports = (resolve, rootDir, isEjecting) => {
       'web.jsx',
       'jsx',
       'node',
+      'web.ts',
+      'ts',
+      'web.tsx',
+      'tsx'
     ],
+    globals: {
+      'ts-jest': {
+        tsConfigFile: paths.appTsTestConfig,
+      },
+    }
   };
   if (rootDir) {
     config.rootDir = rootDir;

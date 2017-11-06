@@ -37,10 +37,10 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts start',
-    build: 'react-scripts build',
-    test: 'react-scripts test --env=jsdom',
-    eject: 'react-scripts eject',
+    start: 'react-scripts-ts start',
+    build: 'react-scripts-ts build',
+    test: 'react-scripts-ts test --env=jsdom',
+    eject: 'react-scripts-ts eject',
   };
 
   fs.writeFileSync(
@@ -100,6 +100,23 @@ module.exports = function(
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
   args.push('react', 'react-dom');
+
+  // Install dev dependencies
+  const types = [
+    '@types/node',
+    '@types/react',
+    '@types/react-dom',
+    '@types/jest',
+  ];
+
+  console.log(`Installing ${types.join(', ')} as dev dependencies ${command}...`);
+  console.log();
+
+  const devProc = spawn.sync(command, args.concat('-D').concat(types), { stdio: 'inherit' });
+  if (devProc.status !== 0) {
+    console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
+    return;
+  }
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
