@@ -34,7 +34,9 @@
     "dotenv": "4.0.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
+    "fork-ts-checker-webpack-plugin": "^0.2.8",
     "fs-extra": "3.0.1",
+    "happypack": "^4.0.0",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
@@ -53,7 +55,6 @@
     "ts-jest": "^21.1.4",
     "ts-loader": "^3.1.1",
     "tslint": "^5.8.0",
-    "tslint-loader": "^3.5.3",
     "tslint-react": "^3.2.0",
     "typescript": "~2.6.1",
     "source-map-loader": "^0.2.3"
