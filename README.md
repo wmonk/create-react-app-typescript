@@ -36,7 +36,7 @@ To fix this, create a new file *in the root of the project* called `tsconfig.tes
 
 ## Changelog
 
-### 2.9.0
+### 2.9.0 (unpublished)
 * Merge latest facebook/create-react-app - @bootstraponline
 
 ### 2.8.0
