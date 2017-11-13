@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 /* @flow */
@@ -56,7 +54,11 @@ async function unmap(
     }
     let { fileName } = frame;
     if (fileName) {
-      fileName = path.normalize(fileName);
+      // The web version of this module only provides POSIX support, so Windows
+      // paths like C:\foo\\baz\..\\bar\ cannot be normalized.
+      // A simple solution to this is to replace all `\` with `/`, then
+      // normalize afterwards.
+      fileName = path.normalize(fileName.replace(/[\\]+/g, '/'));
     }
     if (fileName == null) {
       return frame;
@@ -64,6 +66,7 @@ async function unmap(
     const fN: string = fileName;
     const source = map
       .getSources()
+      // Prepare path for normalization; see comment above for reasoning.
       .map(s => s.replace(/[\\]+/g, '/'))
       .filter(p => {
         p = path.normalize(p);

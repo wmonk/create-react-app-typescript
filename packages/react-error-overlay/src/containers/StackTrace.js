@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 /* @flow */
@@ -14,6 +12,9 @@ import Collapsible from '../components/Collapsible';
 import { isInternalFile } from '../utils/isInternalFile';
 import { isBultinErrorName } from '../utils/isBultinErrorName';
 
+import type { StackFrame as StackFrameType } from '../utils/stack-frame';
+import type { ErrorLocation } from '../utils/parseCompileError';
+
 const traceStyle = {
   fontSize: '1em',
   flex: '0 1 auto',
@@ -21,14 +22,16 @@ const traceStyle = {
   overflow: 'auto',
 };
 
-class StackTrace extends Component {
+type Props = {|
+  stackFrames: StackFrameType[],
+  errorName: string,
+  contextSize: number,
+  editorHandler: (errorLoc: ErrorLocation) => void,
+|};
+
+class StackTrace extends Component<Props> {
   renderFrames() {
-    const {
-      stackFrames,
-      errorName,
-      contextSize,
-      launchEditorEndpoint,
-    } = this.props;
+    const { stackFrames, errorName, contextSize, editorHandler } = this.props;
     const renderedFrames = [];
     let hasReachedAppCode = false,
       currentBundle = [],
@@ -52,7 +55,7 @@ class StackTrace extends Component {
           contextSize={contextSize}
           critical={index === 0}
           showCode={!shouldCollapse}
-          launchEditorEndpoint={launchEditorEndpoint}
+          editorHandler={editorHandler}
         />
       );
       const lastElement = index === stackFrames.length - 1;
@@ -84,11 +87,7 @@ class StackTrace extends Component {
   }
 
   render() {
-    return (
-      <div style={traceStyle}>
-        {this.renderFrames()}
-      </div>
-    );
+    return <div style={traceStyle}>{this.renderFrames()}</div>;
   }
 }
 
