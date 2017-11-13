@@ -36,6 +36,9 @@ To fix this, create a new file *in the root of the project* called `tsconfig.tes
 
 ## Changelog
 
+### 2.9.0
+* Merge latest facebook/create-react-app - @bootstraponline
+
 ### 2.8.0
 * Update typescript to 2.5.3 - @nicolaserny
 
