@@ -173,6 +173,52 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('ts-loader')
           },
+          {
+            test: /\.module\.css$/,
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  use: [
+                    {
+                      loader: require.resolve('typings-for-css-modules-loader'),
+                      options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        modules: true,
+                        namedExport: true,
+                        camelCase: true,
+                        localIdentName: '[path][name]__[local]',
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        // Necessary for external CSS imports to work
+                        // https://github.com/facebookincubator/create-react-app/issues/2677
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          autoprefixer({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                          }),
+                        ],
+                      },
+                    },
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -187,6 +233,7 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
+            exclude: /\.module\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {

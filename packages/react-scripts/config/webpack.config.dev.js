@@ -179,12 +179,17 @@ module.exports = {
             test: /\.css$/,
             use: [
               require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                },
-              },
+              ({ resource }) => (
+                {
+                  loader: require.resolve('typings-for-css-modules-loader'),
+                  options: {
+                    importLoaders: 1,
+                    modules: /\.module\.css$/.test(resource),
+                    localIdentName: '[path][name]__[local]',
+                    namedExport: true,
+                    camelCase: true,
+                  },
+                }),
               {
                 loader: require.resolve('postcss-loader'),
                 options: {

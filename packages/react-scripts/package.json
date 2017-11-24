@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts-ts",
-  "version": "2.8.0",
+  "name": "react-scripts-ts-cm",
+  "version": "2.8.2",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "repository": "tomaash/create-react-app-typescript",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/wmonk/create-react-app/issues"
+    "url": "https://github.com/tomaash/create-react-app-typescript/issues"
   },
   "files": [
     "bin",
@@ -24,7 +24,7 @@
     "autoprefixer": "7.1.2",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
-    "css-loader": "0.28.4",
+    "typings-for-css-modules-loader": "1.7.0",
     "dotenv": "4.0.0",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
