@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-ts-cm",
-  "version": "2.8.2",
+  "version": "2.8.3",
   "description": "Configuration and scripts for Create React App.",
   "repository": "tomaash/create-react-app-typescript",
   "license": "BSD-3-Clause",
@@ -25,6 +25,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "typings-for-css-modules-loader": "1.7.0",
+    "css-loader": "0.28.4",
     "dotenv": "4.0.0",
     "extract-text-webpack-plugin": "3.0.0",
     "file-loader": "0.11.2",
