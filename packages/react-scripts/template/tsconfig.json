@@ -5,6 +5,7 @@
     "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
+    "experimentalDecorators": true,
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
@@ -12,11 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
-  },
+    "noUnusedLocals": false  },
   "exclude": [
     "node_modules",
     "build",

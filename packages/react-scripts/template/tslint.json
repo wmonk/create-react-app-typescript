@@ -1,5 +1,7 @@
 {
-    "extends": ["tslint-react"],
+    "extends": [
+        "tslint-react"
+    ],
     "rules": {
         "align": [
             true,
@@ -13,27 +15,38 @@
             true,
             "check-space"
         ],
-        "curly": true,
+        "curly": false,
         "eofline": false,
         "forin": true,
-        "indent": [ true, "spaces" ],
-        "interface-name": [true, "never-prefix"],
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
         "jsdoc-format": true,
         "jsx-no-lambda": false,
+        "jsx-wrap-multiline": false,
         "jsx-no-multiline-js": false,
+        "jsx-alignment": false,
         "label-position": true,
-        "max-line-length": [ true, 120 ],
+        "max-line-length": [
+            true,
+            120
+        ],
         "member-ordering": [
             true,
             "public-before-private",
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-any": true,
+        "no-any": false,
         "no-arg": true,
         "no-bitwise": true,
         "no-console": [
-            true,
+            false,
             "log",
             "error",
             "debug",
@@ -61,14 +74,24 @@
             "check-open-brace",
             "check-whitespace"
         ],
-        "quotemark": [true, "single", "jsx-double"],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-double"
+        ],
         "radix": true,
-        "semicolon": [true, "always"],
+        "semicolon": [
+            false,
+            "always"
+        ],
         "switch-default": true,
-
-        "trailing-comma": [false],
-
-        "triple-equals": [ true, "allow-null-check" ],
+        "trailing-comma": [
+            false
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
         "typedef": [
             true,
             "parameter",
@@ -84,7 +107,13 @@
                 "variable-declaration": "nospace"
             }
         ],
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore",
+            "allow-pascal-case"
+        ],
         "whitespace": [
             true,
             "check-branch",
