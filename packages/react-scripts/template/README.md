@@ -1246,9 +1246,9 @@ There is a broad spectrum of component testing techniques. They range from a “
 
 Different projects choose different testing tradeoffs based on how often components change, and how much logic they contain. If you haven’t decided on a testing strategy yet, we recommend that you start with creating simple smoke tests for your components:
 
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
+```ts
+import * as React from 'react';
+import * asReactDOM from 'react-dom';
 import App from './App';
 
 it('renders without crashing', () => {
@@ -1257,38 +1257,38 @@ it('renders without crashing', () => {
 });
 ```
 
-This test mounts a component and makes sure that it didn’t throw during rendering. Tests like this provide a lot value with very little effort so they are great as a starting point, and this is the test you will find in `src/App.test.js`.
+This test mounts a component and makes sure that it didn’t throw during rendering. Tests like this provide a lot value with very little effort so they are great as a starting point, and this is the test you will find in `src/App.test.tsx`.
 
 When you encounter bugs caused by changing components, you will gain a deeper insight into which parts of them are worth testing in your application. This might be a good time to introduce more specific tests asserting specific expected output or behavior.
 
 If you’d like to test components in isolation from the child components they render, we recommend using [`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) from [Enzyme](http://airbnb.io/enzyme/). To install it, run:
 
 ```sh
-npm install --save enzyme enzyme-adapter-react-16 react-test-renderer
+npm install --save enzyme @types/enzyme enzyme-adapter-react-16 @types/enzyme-adapter-react-16 react-test-renderer @types/react-test-renderer
 ```
 
 Alternatively you may use `yarn`:
 
 ```sh
-yarn add enzyme enzyme-adapter-react-16 react-test-renderer
+yarn add enzyme @types/enzyme enzyme-adapter-react-16 @types/enzyme-adapter-react-16 react-test-renderer @types/react-test-renderer
 ```
 
 As of Enzyme 3, you will need to install Enzyme along with an Adapter corresponding to the version of React you are using. (The examples above use the adapter for React 16.)
 
 The adapter will also need to be configured in your [global setup file](#initializing-test-environment):
 
-#### `src/setupTests.js`
-```js
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+#### `src/setupTests.ts`
+```ts
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
 ```
 
 Now you can write a smoke test with it:
 
-```js
-import React from 'react';
+```ts
+import * as React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
 
@@ -1303,8 +1303,8 @@ You can read the [Enzyme documentation](http://airbnb.io/enzyme/) for more testi
 
 Here is an example from Enzyme documentation that asserts specific output, rewritten to use Jest matchers:
 
-```js
-import React from 'react';
+```ts
+import * as React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
 
@@ -1337,7 +1337,7 @@ Alternatively you may use `yarn`:
 yarn add jest-enzyme
 ```
 
-Import it in [`src/setupTests.js`](#initializing-test-environment) to make its matchers available in every test:
+Import it in [`src/setupTests.ts`](#initializing-test-environment) to make its matchers available in every test:
 
 ```js
 import 'jest-enzyme';
@@ -1360,12 +1360,12 @@ and then use them in your tests like you normally do.
 
 >Note: this feature is available with `react-scripts@0.4.0` and higher.
 
-If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.js` to your project. It will be automatically executed before running your tests.
+If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.ts` to your project. It will be automatically executed before running your tests.
 
 For example:
 
-#### `src/setupTests.js`
-```js
+#### `src/setupTests.ts`
+```ts
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
