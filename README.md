@@ -7,8 +7,6 @@ Create React apps (with Typescript) with no build configuration.
 
 _Do you know react and want to try out typescript? Or do you know typescript and want to try out react?_ Get all the benefits from `create-react-app` but you use typescript! 🚀
 
-
-
 ## tl;dr
 
 ```sh
