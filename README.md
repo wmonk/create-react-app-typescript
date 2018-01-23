@@ -39,6 +39,26 @@ To fix this, create a new file *in the root of the project* called `tsconfig.tes
 
 ## Changelog
 
+### 2.13.0
+* Remove tslint-loader from prod builds - @DorianGrey
+* Include typescript as devDependency in boilerplate - @ianschmitz
+* Document custom module formats - @joshtynjala
+* Fix tscofnig.json - @diabelb
+
+### 2.12.0
+* Update typescript to 2.6.2
+
+### 2.11.0
+* Upgrade to [`react-scripts@1.0.17`](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.17)
+
+### 2.10.0
+* README updates - StefanSchoof
+* README updates - DorianGrey
+* Add support for fork-ts-checker-webpack-plugin - johnnyreilly
+
+### 2.9.0 - UNPUBLISHED
+This included changes that were not published by the facebook upstream, so was unpublished.
+
 ### 2.8.0
 * Update typescript to 2.5.3 - @nicolaserny
 

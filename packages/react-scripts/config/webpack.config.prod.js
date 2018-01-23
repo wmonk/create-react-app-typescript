@@ -20,6 +20,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -129,6 +130,7 @@ module.exports = {
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+      new TsconfigPathsPlugin({configFile: paths.appTsConfig})
     ],
   },
   module: {
@@ -137,14 +139,6 @@ module.exports = {
       // TODO: Disable require.ensure as it's not a standard language feature.
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
       // { parser: { requireEnsure: false } },
-      // First, run the linter.
-      // It's important to do this before Typescript runs.
-      {
-        test: /\.(ts|tsx)$/,
-        loader: require.resolve('tslint-loader'),
-        enforce: 'pre',
-        include: paths.appSrc,
-      },
       {
         test: /\.(js|jsx|mjs)$/,
         loader: require.resolve('source-map-loader'),
