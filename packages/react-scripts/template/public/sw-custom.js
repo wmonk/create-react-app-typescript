@@ -1,0 +1,1 @@
+console.log('External service worker loaded');
