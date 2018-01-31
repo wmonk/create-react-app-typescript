@@ -56,8 +56,7 @@
   },
   "devDependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "typescript": "^2.6.2"
+    "react-dom": "^15.5.4"
   },
   "peerDependencies": {
     "typescript": "2.x"
