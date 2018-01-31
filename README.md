@@ -14,6 +14,7 @@ npm install -g create-react-app
 
 create-react-app my-app --scripts-version=react-scripts-ts
 cd my-app/
+npm install --save-dev typescript // starting from 2.13.0 typescript is a peer dependency
 npm start
 ```
 
