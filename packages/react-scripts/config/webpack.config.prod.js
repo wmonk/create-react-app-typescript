@@ -160,9 +160,21 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.(js|jsx|mjs)$/,
+            include: paths.appSrc,
+            loader: require.resolve('babel-loader'),
+            options: {
+              // @remove-on-eject-begin
+              babelrc: false,
+              presets: [require.resolve('babel-preset-react-app')],
+              // @remove-on-eject-end
+              compact: true,
+            },
+          },
           // Compile .tsx?
           {
-            test: /\.(ts|tsx|js|jsx)$/,
+            test: /\.(ts|tsx)$/,
             include: paths.appSrc,
             use: [
               {
