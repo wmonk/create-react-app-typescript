@@ -298,6 +298,8 @@ module.exports = {
     new webpack.DefinePlugin(env.stringified),
     // Minify the code.
     new UglifyJsPlugin({
+      parallel: true,
+      cache: true,
       uglifyOptions: {
         ecma: 8,
         compress: {
