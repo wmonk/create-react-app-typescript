@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 const fs = require('fs');
@@ -49,14 +47,11 @@ if (process.env.E2E_FILE) {
 
   resourceLoader = (resource, callback) => resource.defaultFetch(callback);
 } else {
-  it.only(
-    'can run jsdom (at least one of "E2E_FILE" or "E2E_URL" environment variables must be provided)',
-    () => {
-      expect(
-        new Error("This isn't the error you are looking for.")
-      ).to.be.undefined();
-    }
-  );
+  it.only('can run jsdom (at least one of "E2E_FILE" or "E2E_URL" environment variables must be provided)', () => {
+    expect(
+      new Error("This isn't the error you are looking for.")
+    ).to.be.undefined();
+  });
 }
 
 export default feature =>

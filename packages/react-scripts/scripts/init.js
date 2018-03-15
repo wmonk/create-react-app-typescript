@@ -1,11 +1,9 @@
 // @remove-file-on-eject
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 'use strict';
 
@@ -108,12 +106,17 @@ module.exports = function(
     '@types/react',
     '@types/react-dom',
     '@types/jest',
+    'typescript',
   ];
 
-  console.log(`Installing ${types.join(', ')} as dev dependencies ${command}...`);
+  console.log(
+    `Installing ${types.join(', ')} as dev dependencies ${command}...`
+  );
   console.log();
 
-  const devProc = spawn.sync(command, args.concat('-D').concat(types), { stdio: 'inherit' });
+  const devProc = spawn.sync(command, args.concat('-D').concat(types), {
+    stdio: 'inherit',
+  });
   if (devProc.status !== 0) {
     console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
     return;
