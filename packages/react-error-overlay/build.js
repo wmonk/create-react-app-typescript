@@ -14,7 +14,8 @@ const chokidar = require('chokidar');
 const args = process.argv.slice(2);
 const watchMode = args[0] === '--watch' || args[0] === '-w';
 
-const isCI = process.env.CI &&
+const isCI =
+  process.env.CI &&
   (typeof process.env.CI !== 'string' ||
     process.env.CI.toLowerCase() !== 'false');
 

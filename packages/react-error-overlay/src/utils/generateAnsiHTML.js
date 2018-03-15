@@ -70,7 +70,8 @@ function generateAnsiHTML(txt: string): string {
   var open = false;
   for (var index = 0; index < arr.length; ++index) {
     var c = arr[index];
-    var content = c.content, fg = c.fg;
+    var content = c.content,
+      fg = c.fg;
 
     var contentParts = content.split('\n');
     for (var _index = 0; _index < contentParts.length; ++_index) {

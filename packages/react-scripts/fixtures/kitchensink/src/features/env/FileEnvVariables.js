@@ -19,8 +19,6 @@ export default () => (
       {process.env.REACT_APP_DEVELOPMENT}
       {process.env.REACT_APP_PRODUCTION}
     </span>
-    <span id="feature-file-env-x">
-      {process.env.REACT_APP_X}
-    </span>
+    <span id="feature-file-env-x">{process.env.REACT_APP_X}</span>
   </span>
 );

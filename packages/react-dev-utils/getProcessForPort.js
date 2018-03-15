@@ -68,10 +68,12 @@ function getProcessForPort(port) {
     var processId = getProcessIdOnPort(port);
     var directory = getDirectoryOfProcessById(processId);
     var command = getProcessCommand(processId, directory);
-    return chalk.cyan(command) +
+    return (
+      chalk.cyan(command) +
       chalk.grey(' (pid ' + processId + ')\n') +
       chalk.blue('  in ') +
-      chalk.cyan(directory);
+      chalk.cyan(directory)
+    );
   } catch (e) {
     return null;
   }
