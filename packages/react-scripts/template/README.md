@@ -1532,6 +1532,8 @@ Example package.json:
 }
 ```
 
+Note that customizing the `moduleNameMapper` configuration will override the default (`{ '^react-native$': 'react-native-web' }`).
+
 ### Continuous Integration
 
 By default `npm test` runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called `CI`.
