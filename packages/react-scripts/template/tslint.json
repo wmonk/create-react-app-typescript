@@ -7,6 +7,16 @@
     ]
   },
   "rules": {
-    "ordered-imports": false
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "jsx-boolean-value": false,
+    "interface-name": false,
+    "interface-over-type-literal": false,
+    "jsx-no-lambda": {
+      "severity": "warning"
+    },
+    "member-access": {
+      "severity": "warning"
+    }
   }
 }
