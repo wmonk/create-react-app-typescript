@@ -1,8 +1,8 @@
 {
-  "name": "react-scripts-ts",
-  "version": "2.16.0",
+  "name": "@gssfed/react-scripts",
+  "version": "0.0.3",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "repository": "gssfed/create-react-app-vital",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
