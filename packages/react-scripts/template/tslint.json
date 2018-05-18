@@ -12,9 +12,7 @@
     "jsx-boolean-value": false,
     "interface-name": false,
     "interface-over-type-literal": false,
-    "jsx-no-lambda": {
-      "severity": "warning"
-    },
+    "jsx-no-lambda": false,
     "member-access": {
       "severity": "warning"
     }

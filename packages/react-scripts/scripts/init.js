@@ -105,6 +105,7 @@ module.exports = function(
 
   // Install dev dependencies
   const types = [
+    'node-sass',
     '@types/node',
     '@types/react',
     '@types/react-dom',
