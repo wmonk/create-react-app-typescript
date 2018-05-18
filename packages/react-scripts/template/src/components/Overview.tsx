@@ -31,7 +31,7 @@ const Vertical = styled.div`
 `;
 
 interface ISection {
-  title: String,
+  title: string,
   children: React.ReactNode,
 }
 
