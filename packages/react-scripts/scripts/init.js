@@ -150,7 +150,6 @@ module.exports = function(
     'react-redux',
     'react-router-dom',
     'styled-components',
-    'polished',
   ]
 
   console.log(

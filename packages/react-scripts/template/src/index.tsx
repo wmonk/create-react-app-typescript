@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './App';
 import './index.css';
-import '@gssfed/vital-ui-kit-react/dist/global.css'
+import '@gssfed/vital-ui-kit-react/dist/base/global.css'
 import registerServiceWorker from './registerServiceWorker';
 import store from './store';
 
