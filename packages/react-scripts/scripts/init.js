@@ -105,10 +105,13 @@ module.exports = function(
 
   // Install dev dependencies
   const types = [
+    'node-sass',
     '@types/node',
     '@types/react',
     '@types/react-dom',
     '@types/jest',
+    '@types/react-redux',
+    '@types/react-router-dom',
     'typescript',
   ];
 
@@ -138,6 +141,28 @@ module.exports = function(
       })
     );
     fs.unlinkSync(templateDependenciesPath);
+  }
+
+  // Install additional deps
+  const vitalDeps = [
+    '@gssfed/vital-ui-kit-react',
+    'redux',
+    'react-redux',
+    'react-router-dom',
+    'styled-components',
+  ]
+
+  console.log(
+    `Installing ${vitalDeps.join(', ')} as dependencies ${command}...`
+  );
+  console.log();
+
+  const vitalProc = spawn.sync(command, args.concat(vitalDeps), {
+    stdio: 'inherit',
+  });
+  if (vitalProc.status !== 0) {
+    console.error(`\`${command} ${args.join(' ')}\` failed`);
+    return;
   }
 
   // Install react and react-dom for backward compatibility with old CRA cli

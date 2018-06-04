@@ -1,8 +1,8 @@
 {
-  "name": "react-scripts-ts",
-  "version": "2.16.0",
+  "name": "@gssfed/react-scripts-ts",
+  "version": "0.1.0",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "repository": "gssfed/create-react-app-vital",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
@@ -45,6 +45,7 @@
     "react-dev-utils": "^5.0.1",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
+    "sass-loader": "7.0.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "ts-jest": "22.0.1",
     "ts-loader": "^2.3.7",
