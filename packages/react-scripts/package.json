@@ -57,6 +57,7 @@
     "ts-jest": "22.0.1",
     "ts-loader": "^2.3.7",
     "tsconfig-paths-webpack-plugin": "^2.0.0",
+    "typescript-eslint-parser": "^16.0.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
@@ -67,8 +68,7 @@
   "devDependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "typescript": "^2.7.1",
-    "typescript-eslint-parser": "^16.0.1"
+    "typescript": "^2.7.1"
   },
   "peerDependencies": {
     "typescript": "2.x"
