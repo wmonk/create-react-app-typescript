@@ -153,13 +153,13 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              // @remove-on-eject-begin
               // TODO: consider separate config for production,
               // e.g. to enable no-console and no-debugger only in production.
               baseConfig: {
                 extends: [require.resolve('eslint-config-react-app')],
                 parser: 'typescript-eslint-parser',
               },
+              // @remove-on-eject-begin
               ignore: false,
               useEslintrc: false,
               // @remove-on-eject-end
