@@ -49,9 +49,9 @@
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
     "raf": "3.4.0",
-    "source-map-loader": "^0.2.1",
     "react-dev-utils": "^5.0.1",
     "resolve": "1.6.0",
+    "source-map-loader": "^0.2.1",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "ts-jest": "22.0.1",
@@ -67,7 +67,8 @@
   "devDependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "typescript": "^2.7.1"
+    "typescript": "^2.7.1",
+    "typescript-eslint-parser": "^16.0.1"
   },
   "peerDependencies": {
     "typescript": "2.x"

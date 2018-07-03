@@ -138,7 +138,7 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|jsx|mjs)$/,
+        test: /\.(js|jsx|mjs|ts|tsx)$/,
         enforce: 'pre',
         use: [
           require.resolve('source-map-loader'),
@@ -149,6 +149,7 @@ module.exports = {
               // @remove-on-eject-begin
               baseConfig: {
                 extends: [require.resolve('eslint-config-react-app')],
+                parser: 'typescript-eslint-parser',
               },
               ignore: false,
               useEslintrc: false,
