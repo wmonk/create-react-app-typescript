@@ -1,6 +1,6 @@
 {
   "name": "@petejkim/react-scripts-ts-sass",
-  "version": "2.15.2",
+  "version": "2.16.0",
   "description": "Configuration and scripts for Create React App with support for TypeScript and Sass.",
   "repository": "petejkim/create-react-app-typescript-sass",
   "license": "BSD-3-Clause",
@@ -32,7 +32,7 @@
     "file-loader": "0.11.2",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
-    "jest": "22.1.4",
+    "jest": "22.4.2",
     "node-sass": "^4.7.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
