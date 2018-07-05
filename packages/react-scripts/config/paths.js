@@ -68,6 +68,11 @@ module.exports = {
 // @remove-on-eject-begin
 const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
+// create array of node_module folders that also need typescript processing
+const folders = process.env.REACT_APP_TYPESCRIPT_NODE_MODULES_FOLDERS
+const typescriptNodeModules = !folders ? [] :
+    folders.split(" ").map((folder) => resolveApp(`node_modules/${folder}`));
+
 // config before eject: we're in ./node_modules/react-scripts/config/
 module.exports = {
   dotenv: resolveApp('.env'),
@@ -90,6 +95,7 @@ module.exports = {
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
+  typescriptModules: typescriptNodeModules,
 };
 
 const ownPackageJson = require('../package.json');

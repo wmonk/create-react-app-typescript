@@ -17,6 +17,17 @@ cd my-app/
 npm start
 ```
 
+## Node_module packages that also need typescript processing
+To enable typescript processing on node_module folders (npm packages) you may add the following environment variable to your package.
+```sh
+REACT_APP_TYPESCRIPT_NODE_MODULES_FOLDERS="$$folder name(s) space delimited$$"
+```
+Ex. for internal, namespaced packages like `{root}/node_modules/@company-name/unique` you could set
+```sh
+REACT_APP_TYPESCRIPT_NODE_MODULES_FOLDERS="@company-name"
+```
+
+
 ## Migration
 
 In general, most upgrades won't require any migration steps to work, but if you experience problems after an upgrade, please file an issue, and we'll add it to the list of migration steps below.
