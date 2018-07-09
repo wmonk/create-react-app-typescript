@@ -41,7 +41,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
       ),
     },
     transformIgnorePatterns: [
-      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$',
+      '[/\\\\]node_modules[/\\\\](?!@zept).+\\.(js|jsx|mjs|ts|tsx)$',
     ],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
