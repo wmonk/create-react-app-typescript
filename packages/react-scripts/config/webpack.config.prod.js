@@ -158,6 +158,18 @@ module.exports = {
               baseConfig: {
                 extends: [require.resolve('eslint-config-react-app')],
                 parser: 'typescript-eslint-parser',
+                overrides: [
+                  {
+                    files: ['*.ts', '*.tsx'],
+                    rules: {
+                      'no-array-constructor': 'off',
+                      'no-multi-str': 'off',
+                      'no-restricted-globals': 'off',
+                      'no-undef': 'off',
+                      'no-unused-vars': 'off',
+                    },
+                  },
+                ],
               },
               // @remove-on-eject-begin
               ignore: false,
