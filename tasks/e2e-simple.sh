@@ -63,23 +63,10 @@ set -x
 cd ..
 root_path=$PWD
 
-# Make sure we don't introduce accidental references to PATENTS.
-EXPECTED='packages/react-error-overlay/fixtures/bundle.mjs
-packages/react-error-overlay/fixtures/bundle.mjs.map
-packages/react-error-overlay/fixtures/bundle_u.mjs
-packages/react-error-overlay/fixtures/bundle_u.mjs.map
-tasks/e2e-simple.sh'
-ACTUAL=$(git grep -l PATENTS)
-if [ "$EXPECTED" != "$ACTUAL" ]; then
-  echo "PATENTS crept into some new files?"
-  diff -u <(echo "$EXPECTED") <(echo "$ACTUAL") || true
-  exit 1
-fi
-
 if hash npm 2>/dev/null
 then
   npm i -g npm@latest
-  npm cache verify
+  npm cache clean || npm cache verify
 fi
 
 # Bootstrap monorepo
@@ -98,48 +85,14 @@ yarn config set registry "$custom_registry_url"
 # Login so we can publish packages
 npx npm-cli-login@0.0.10 -u user -p password -e user@example.com -r "$custom_registry_url" --quotes
 
-# Lint own code
-./node_modules/.bin/eslint --max-warnings 0 packages/babel-preset-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/create-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/eslint-config-react-app/
-./node_modules/.bin/eslint --max-warnings 0 packages/react-dev-utils/
-./node_modules/.bin/eslint --max-warnings 0 packages/react-scripts/
-cd packages/react-error-overlay/
-./node_modules/.bin/eslint --max-warnings 0 src/
-yarn test
-
 if [ $APPVEYOR != 'True' ]; then
   # Flow started hanging on AppVeyor after we moved to Yarn Workspaces :-(
   yarn flow
 fi
 
-cd ../..
-cd packages/react-dev-utils/
-yarn test
-cd ../..
-
 # ******************************************************************************
-# First, test the create-react-app development environment.
-# This does not affect our users but makes sure we can develop it.
+# Publish to local registry
 # ******************************************************************************
-
-# Test local build command
-yarn build
-# Check for expected output
-exists build/*.html
-exists build/static/js/*.js
-exists build/static/css/*.css
-exists build/static/media/*.svg
-exists build/favicon.ico
-
-# Run tests with CI flag
-CI=true yarn test
-# Uncomment when snapshot testing is enabled by default:
-# exists template/src/__snapshots__/App.test.js.snap
-
-# Test local start command
-yarn start --smoke-test
-
 git clean -df
 ./tasks/publish.sh --yes --force-publish=* --skip-git --cd-version=prerelease --exact --npm-tag=latest
 
@@ -151,13 +104,10 @@ git clean -df
 cd $temp_app_path
 npx create-react-app test-app --scripts-version=react-scripts-ts
 
-# TODO: verify we installed prerelease
-
 # ******************************************************************************
 # Now that we used create-react-app to create an app depending on react-scripts,
 # let's make sure all npm scripts are in the working state.
 # ******************************************************************************
-
 function verify_env_url {
   # Backup package.json because we're going to make it dirty
   cp package.json package.json.orig
