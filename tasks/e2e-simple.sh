@@ -66,7 +66,6 @@ root_path=$PWD
 if hash npm 2>/dev/null
 then
   npm i -g npm@latest
-  npm cache clean || npm cache verify
 fi
 
 # Bootstrap monorepo
@@ -74,7 +73,7 @@ yarn
 
 # Start local registry
 tmp_registry_log=`mktemp`
-nohup npx verdaccio@2.7.2 &>$tmp_registry_log &
+nohup npx verdaccio@3.2.0 -c tasks/verdaccio.yaml &>$tmp_registry_log &
 # Wait for `verdaccio` to boot
 grep -q 'http address' <(tail -f $tmp_registry_log)
 
@@ -83,16 +82,13 @@ npm set registry "$custom_registry_url"
 yarn config set registry "$custom_registry_url"
 
 # Login so we can publish packages
-npx npm-cli-login@0.0.10 -u user -p password -e user@example.com -r "$custom_registry_url" --quotes
-
-if [ $APPVEYOR != 'True' ]; then
-  # Flow started hanging on AppVeyor after we moved to Yarn Workspaces :-(
-  yarn flow
-fi
+(cd && npx npm-auth-to-token@1.0.0 -u user -p password -e user@example.com -r "$custom_registry_url")
 
 # ******************************************************************************
-# Publish to local registry
+# First, test the create-react-app development environment.
+# This does not affect our users but makes sure we can develop it.
 # ******************************************************************************
+
 git clean -df
 ./tasks/publish.sh --yes --force-publish=* --skip-git --cd-version=prerelease --exact --npm-tag=latest
 
@@ -104,10 +100,13 @@ git clean -df
 cd $temp_app_path
 npx create-react-app test-app --scripts-version=react-scripts-ts
 
+# TODO: verify we installed prerelease
+
 # ******************************************************************************
 # Now that we used create-react-app to create an app depending on react-scripts,
 # let's make sure all npm scripts are in the working state.
 # ******************************************************************************
+
 function verify_env_url {
   # Backup package.json because we're going to make it dirty
   cp package.json package.json.orig
@@ -171,6 +170,8 @@ function verify_module_scope {
   yarn build; test $? -eq 1 || exit 1
   # TODO: check for error message
 
+  rm sample.json
+
   # Restore App.tsx
   rm src/App.tsx
   mv src/App.tsx.bak src/App.tsx
@@ -218,7 +219,7 @@ exists build/static/css/*.css
 exists build/static/media/*.svg
 exists build/favicon.ico
 
-# Run tests, overring the watch option to disable it.
+# Run tests, overriding the watch option to disable it.
 # `CI=true yarn test` won't work here because `yarn test` becomes just `jest`.
 # We should either teach Jest to respect CI env variable, or make
 # `scripts/test.js` survive ejection (right now it doesn't).
