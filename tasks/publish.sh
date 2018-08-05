@@ -32,4 +32,5 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 # Go!
-npm publish --independent "$@"
+npm version minor
+npm publish "$@"
