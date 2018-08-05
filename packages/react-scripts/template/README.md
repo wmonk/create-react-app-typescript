@@ -100,6 +100,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [`npm run build` fails on Heroku](#npm-run-build-fails-on-heroku)
   - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
+  - [TypeError: Cannot read property _foo_ on undefined](#typeerror-cannot-read-property-foo-on-undefined)
 - [Alternatives to Ejecting](#alternatives-to-ejecting)
 - [Something Missing?](#something-missing)
 
@@ -2438,6 +2439,20 @@ To resolve this:
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
 In the future, we might start automatically compiling incompatible third-party modules, but it is not currently supported. This approach would also slow down the production builds.
+
+### TypeError: Cannot read property _foo_ on undefined
+
+When importing a module, you might need to use
+
+```typescript
+import * as foo from 'foo';
+```
+
+instead of
+
+```typescript
+import foo from 'foo';
+```
 
 ## Alternatives to Ejecting
 
