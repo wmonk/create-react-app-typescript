@@ -36,4 +36,5 @@ cd packages/react-error-overlay/
 npm run build:prod
 cd ../..
 # Go!
-./node_modules/.bin/lerna publish --independent "$@"
+git checkout master
+./node_modules/.bin/lerna publish
