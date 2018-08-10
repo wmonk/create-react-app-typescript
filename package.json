@@ -28,6 +28,11 @@
     "lint-staged": "^3.3.1",
     "prettier": "1.6.1"
   },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom",
+    "testURL": "http://localhost/"
+  },
   "lint-staged": {
     "*.js": [
       "prettier --trailing-comma es5 --single-quote --write",
