@@ -10,9 +10,13 @@ _Do you know react and want to try out typescript? Or do you know typescript and
 ## tl;dr
 
 ```sh
-npm install -g create-react-app
+npx create-react-app my-app --scripts-version=react-scripts-ts
 
+# or if you prefer:
+npm install -g create-react-app
 create-react-app my-app --scripts-version=react-scripts-ts
+
+# then:
 cd my-app/
 npm start
 ```
