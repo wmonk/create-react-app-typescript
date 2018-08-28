@@ -76,6 +76,7 @@
       "/node_modules/",
       "/fixtures/",
       "setupJest.js"
-    ]
+    ],
+    "testURL": "http://localhost/"
   }
 }

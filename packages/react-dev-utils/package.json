@@ -60,5 +60,8 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "jest": {
+    "testURL": "http://localhost/"
   }
 }
