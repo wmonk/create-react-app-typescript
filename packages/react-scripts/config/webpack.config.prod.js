@@ -315,6 +315,9 @@ module.exports = {
           // Pending further investigation:
           // https://github.com/mishoo/UglifyJS2/issues/2011
           comparisons: false,
+          // Don't inline functions with arguments, to avoid name collisions:
+          // https://github.com/mishoo/UglifyJS2/issues/2842
+          inline: 1,
         },
         mangle: {
           safari10: true,
