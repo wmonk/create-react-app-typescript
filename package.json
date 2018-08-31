@@ -26,7 +26,7 @@
     "dotenv-expand": "4.2.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.11",
-    "fork-ts-checker-webpack-plugin": "^0.2.8",
+    "fork-ts-checker-webpack-plugin": "0.4.9",
     "fs-extra": "5.0.0",
     "html-webpack-plugin": "3.2.0",
     "jest": "22.4.3",
@@ -41,7 +41,7 @@
     "style-loader": "0.21.0",
     "sw-precache-webpack-plugin": "0.11.5",
     "ts-jest": "22.0.1",
-    "ts-loader": "^2.3.7",
+    "ts-loader": "4.5.0",
     "tsconfig-paths-webpack-plugin": "^2.0.0",
     "tslint": "^5.7.0",
     "tslint-config-prettier": "^1.10.0",
@@ -56,10 +56,10 @@
   "devDependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "typescript": "^2.7.1"
+    "typescript": "3.0.1"
   },
   "peerDependencies": {
-    "typescript": "2.x"
+    "typescript": "3.x.x"
   },
   "optionalDependencies": {
     "fsevents": "^1.1.3"
