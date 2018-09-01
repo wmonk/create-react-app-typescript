@@ -21,6 +21,10 @@ npm start
 
 In general, most upgrades won't require any migration steps to work, but if you experience problems after an upgrade, please file an issue, and we'll add it to the list of migration steps below.
 
+### From `<2.16.0` to `>=2.16.0`
+
+Since `2.16.0`, the template uses different `tsconfig` files for both development and production mode. For the latter, unfortunately, the path resolver is not smart enough to fall back to the basic `tsconfig.json` in case the expected `tsconfig.prod.json` is not present, so you have to create this file manually like shown [here](https://github.com/wmonk/create-react-app-typescript/blob/master/packages/react-scripts/template/tsconfig.prod.json).
+
 ### From `<2.13.0` to `>=2.13.0`
 
 Since `2.13.0`, `typescript` is listed as a peer dependency of `react-scripts-ts`. For projects generated with at least this version, the init script takes care of properly installing it as dev dependency to the generated projects. Older projects require manual installation, in case you have not already done that.
@@ -52,6 +56,12 @@ Test suite failed to run
 To fix this, create a new file *in the root of the project* called `tsconfig.test.json`, and paste [the content of this file into it](https://raw.githubusercontent.com/wmonk/create-react-app-typescript/master/packages/react-scripts/template/tsconfig.test.json). Everything should work now. For more info, please see [this issue](https://github.com/wmonk/create-react-app-typescript/issues/141).
 
 ## Changelog
+
+### 2.17.0
+* Update migration instructions - @DorianGrey
+* tslint updates - @alexandrudanpop
+* Stop eslint includes - @aurerua
+* Resolve commited merge conflig - @AndrewKvalheim
 
 ### 2.16.0
 * Allow `moduleNameMapper` config override - @sebald
