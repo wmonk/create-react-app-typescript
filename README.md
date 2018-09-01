@@ -57,6 +57,12 @@ To fix this, create a new file *in the root of the project* called `tsconfig.tes
 
 ## Changelog
 
+### 2.17.0
+* Update migration instructions - @DorianGrey
+* tslint updates - @alexandrudanpop
+* Stop eslint includes - @aurerua
+* Resolve commited merge conflig - @AndrewKvalheim
+
 ### 2.16.0
 * Allow `moduleNameMapper` config override - @sebald
 * Fix travis build - @DorianGrey
