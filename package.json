@@ -57,6 +57,7 @@
     "ts-jest": "22.0.1",
     "ts-loader": "^2.3.7",
     "tsconfig-paths-webpack-plugin": "^2.0.0",
+    "tslib": "^1.9.3",
     "typescript-eslint-parser": "^18.0.0",
     "uglifyjs-webpack-plugin": "1.2.5",
     "url-loader": "0.6.2",
