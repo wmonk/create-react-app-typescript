@@ -51,6 +51,7 @@
     "ts-jest": "23.1.4",
     "ts-loader": "^2.3.7",
     "tsconfig-paths-webpack-plugin": "^2.0.0",
+    "tslib": "^1.9.3",
     "tslint": "^5.7.0",
     "tslint-config-prettier": "^1.10.0",
     "tslint-react": "^3.2.0",
