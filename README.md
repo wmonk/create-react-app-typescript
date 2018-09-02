@@ -15,7 +15,7 @@ cd my-app
 npm start
 
 # or with yarn
-yarn create react-react-app my-app --scripts-version=react-scripts-ts
+yarn create react-app my-app --scripts-version=react-scripts-ts
 cd my-app
 yarn start
 ```
