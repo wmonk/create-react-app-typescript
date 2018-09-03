@@ -156,20 +156,7 @@ module.exports = {
               // TODO: consider separate config for production,
               // e.g. to enable no-console and no-debugger only in production.
               baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
-                parser: 'typescript-eslint-parser',
-                overrides: [
-                  {
-                    files: ['*.ts', '*.tsx'],
-                    rules: {
-                      'no-array-constructor': 'off',
-                      'no-multi-str': 'off',
-                      'no-restricted-globals': 'off',
-                      'no-undef': 'off',
-                      'no-unused-vars': 'off',
-                    },
-                  },
-                ],
+                extends: [require.resolve('eslint-config-react-app-ts')],
               },
               // @remove-on-eject-begin
               ignore: false,

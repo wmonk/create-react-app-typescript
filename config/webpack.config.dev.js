@@ -147,20 +147,7 @@ module.exports = {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
               baseConfig: {
-                extends: [require.resolve('eslint-config-react-app')],
-                parser: 'typescript-eslint-parser',
-                overrides: [
-                  {
-                    files: ['*.ts', '*.tsx'],
-                    rules: {
-                      'no-array-constructor': 'off',
-                      'no-multi-str': 'off',
-                      'no-restricted-globals': 'off',
-                      'no-undef': 'off',
-                      'no-unused-vars': 'off',
-                    },
-                  },
-                ],
+                extends: [require.resolve('eslint-config-react-app-ts')],
               },
               // @remove-on-eject-begin
               ignore: false,
