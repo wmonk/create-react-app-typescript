@@ -26,15 +26,15 @@ const fs = require('fs');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const clearConsole = require('react-dev-utils/clearConsole');
-const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
+const clearConsole = require('react-dev-utils-for-webpack4/clearConsole');
+const checkRequiredFiles = require('react-dev-utils-for-webpack4/checkRequiredFiles');
 const {
   choosePort,
   createCompiler,
   prepareProxy,
   prepareUrls,
-} = require('react-dev-utils/WebpackDevServerUtils');
-const openBrowser = require('react-dev-utils/openBrowser');
+} = require('react-dev-utils-for-webpack4/WebpackDevServerUtils');
+const openBrowser = require('react-dev-utils-for-webpack4/openBrowser');
 const paths = require('../config/paths');
 const config = require('../config/webpack.config.dev');
 const createDevServerConfig = require('../config/webpackDevServer.config');

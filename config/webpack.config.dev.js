@@ -13,9 +13,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const InterpolateHtmlPlugin = require('react-dev-utils-for-webpack4/InterpolateHtmlPlugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils-for-webpack4/WatchMissingNodeModulesPlugin');
+const ModuleScopePlugin = require('react-dev-utils-for-webpack4/ModuleScopePlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -54,7 +54,7 @@ module.exports = {
     // the line below with these two lines if you prefer the stock client:
     // require.resolve('webpack-dev-server/client') + '?/',
     // require.resolve('webpack/hot/dev-server'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+    require.resolve('react-dev-utils-for-webpack4/webpackHotDevClient'),
     // Finally, this is your app's code:
     paths.appIndexJs,
     // We include the app code last so that if there is a runtime error during
@@ -174,11 +174,19 @@ module.exports = {
             test: /\.(ts|tsx)$/,
             include: paths.appSrc,
             use: [
+              { loader: 'cache-loader' },
+              {
+                loader: 'thread-loader',
+                options: {
+                    // there should be 1 cpu for the fork-ts-checker-webpack-plugin
+                    workers: require('os').cpus().length - 2,
+                },
+              },
               {
                 loader: require.resolve('ts-loader'),
                 options: {
-                  // disable type checker - we will use it in fork plugin
-                  transpileOnly: true,
+                  happyPackMode: true, // IMPORTANT! use happyPackMode mode to speed-up compilation and reduce errors reported to webpack
+                  // experimentalWatchApi: true,
                 },
               },
             ],
@@ -243,16 +251,16 @@ module.exports = {
     ],
   },
   plugins: [
-    // Makes some environment variables available in index.html.
-    // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
-    // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    // In development, this will be an empty string.
-    new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
     }),
+    // Makes some environment variables available in index.html.
+    // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+    // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    // In development, this will be an empty string.
+    new InterpolateHtmlPlugin(env.raw),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:
@@ -279,6 +287,7 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
       watch: paths.appSrc,
+      checkSyntacticErrors: true,
       tsconfig: paths.appTsConfig,
       tslint: paths.appTsLint,
     }),
@@ -297,5 +306,10 @@ module.exports = {
   // cumbersome.
   performance: {
     hints: false,
+  },
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
   },
 };
