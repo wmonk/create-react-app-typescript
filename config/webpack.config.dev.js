@@ -244,7 +244,9 @@ module.exports = {
             use: getStyleLoaders({
               importLoaders: 1,
               modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
+              // TODO: This is in a future react-dev-utils version
+              // It should be enabled when react-dev-utils is updated
+              // getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
           // Opt-in support for SASS (using .scss or .sass extensions).
@@ -265,7 +267,9 @@ module.exports = {
               {
                 importLoaders: 2,
                 modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
+                // TODO: This is in a future react-dev-utils
+                // It should be enabled when react-dev-utils is updated
+                // getLocalIdent: getCSSModuleLocalIdent,
               },
               'sass-loader'
             ),

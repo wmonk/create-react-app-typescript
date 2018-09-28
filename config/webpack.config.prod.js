@@ -252,7 +252,9 @@ module.exports = {
               importLoaders: 1,
               sourceMap: shouldUseSourceMap,
               modules: true,
-              getLocalIdent: getCSSModuleLocalIdent,
+              // TODO: This is in a future react-dev-utils version
+              // It should be enabled when react-dev-utils is updated
+              // getLocalIdent: getCSSModuleLocalIdent,
             }),
           },
           // Opt-in support for SASS. The logic here is somewhat similar
@@ -280,7 +282,9 @@ module.exports = {
                 importLoaders: 2,
                 sourceMap: shouldUseSourceMap,
                 modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
+                // TODO: This is in a future react-dev-utils version
+                // It should be enabled when react-dev-utils is updated
+                // getLocalIdent: getCSSModuleLocalIdent,
               },
               'sass-loader'
             ),
