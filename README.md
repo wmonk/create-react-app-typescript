@@ -3,19 +3,27 @@
 Create React apps (with Typescript) with no build configuration.
 
  * [Getting Started](#tldr) – How to create a new app.
- * [User Guide](https://github.com/wmonk/create-react-app-typescript/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with react scripts ts.
+ * [User Guide](https://github.com/wmonk/create-react-app-typescript/blob/master/template/README.md) – How to develop apps bootstrapped with react scripts ts.
 
 _Do you know react and want to try out typescript? Or do you know typescript and want to try out react?_ Get all the benefits from `create-react-app` but you use typescript! 🚀
 
-## tl;dr
+## Quick Overview
 
 ```sh
-npm install -g create-react-app
-
-create-react-app my-app --scripts-version=react-scripts-ts
-cd my-app/
+npx create-react-app my-app --scripts-version=react-scripts-ts
+cd my-app
 npm start
+
+# or with yarn
+yarn create react-app my-app --scripts-version=react-scripts-ts
+cd my-app
+yarn start
 ```
+
+*([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))*
+
+Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
+When you’re ready to deploy to production, create a minified bundle with `npm run build`.
 
 ## Migration
 
@@ -23,7 +31,7 @@ In general, most upgrades won't require any migration steps to work, but if you 
 
 ### From `<2.16.0` to `>=2.16.0`
 
-Since `2.16.0`, the template uses different `tsconfig` files for both development and production mode. For the latter, unfortunately, the path resolver is not smart enough to fall back to the basic `tsconfig.json` in case the expected `tsconfig.prod.json` is not present, so you have to create this file manually like shown [here](https://github.com/wmonk/create-react-app-typescript/blob/master/packages/react-scripts/template/tsconfig.prod.json).
+Since `2.16.0`, the template uses different `tsconfig` files for both development and production mode. For the latter, unfortunately, the path resolver is not smart enough to fall back to the basic `tsconfig.json` in case the expected `tsconfig.prod.json` is not present, so you have to create this file manually like shown [here](https://github.com/wmonk/create-react-app-typescript/blob/master/template/tsconfig.prod.json).
 
 ### From `<2.13.0` to `>=2.13.0`
 
@@ -53,9 +61,15 @@ Test suite failed to run
 }
 ```
 
-To fix this, create a new file *in the root of the project* called `tsconfig.test.json`, and paste [the content of this file into it](https://raw.githubusercontent.com/wmonk/create-react-app-typescript/master/packages/react-scripts/template/tsconfig.test.json). Everything should work now. For more info, please see [this issue](https://github.com/wmonk/create-react-app-typescript/issues/141).
+To fix this, create a new file *in the root of the project* called `tsconfig.test.json`, and paste [the content of this file into it](https://raw.githubusercontent.com/wmonk/create-react-app-typescript/master/template/tsconfig.test.json). Everything should work now. For more info, please see [this issue](https://github.com/wmonk/create-react-app-typescript/issues/141).
 
 ## Changelog
+
+### 2.17.0
+* Update migration instructions - @DorianGrey
+* tslint updates - @alexandrudanpop
+* Stop eslint includes - @aurerua
+* Resolve commited merge conflig - @AndrewKvalheim
 
 ### 2.16.0
 * Allow `moduleNameMapper` config override - @sebald
