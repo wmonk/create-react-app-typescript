@@ -23,7 +23,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
   const config = {
     collectCoverageFrom: [
       'src/**/*.{js,jsx,ts,tsx}',
-      "!**/*.d.ts"
+      '!**/*.d.ts'
     ],
     setupFiles: [resolve('config/polyfills.js')],
     setupTestFrameworkScriptFile: setupTestsFile,
