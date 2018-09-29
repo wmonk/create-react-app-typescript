@@ -25,48 +25,36 @@ module.exports = (resolve, rootDir, isEjecting) => {
       'src/**/*.{js,jsx,ts,tsx}',
       '!**/*.d.ts'
     ],
-    setupFiles: [resolve('config/polyfills.js')],
+    setupFiles: ['react-app-polyfill/jsdom'],
     setupTestFrameworkScriptFile: setupTestsFile,
     testMatch: [
       '<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)',
       '<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)',
     ],
-    testEnvironment: 'node',
+    testEnvironment: 'jsdom',
     testURL: 'http://localhost',
     transform: {
-      '^.+\\.(js|jsx|mjs)$': isEjecting
+      '^.+\\.(js|jsx)$': isEjecting
         ? '<rootDir>/node_modules/babel-jest'
         : resolve('config/jest/babelTransform.js'),
       '^.+\\.tsx?$': resolve('config/jest/typescriptTransform.js'),
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
-      '^(?!.*\\.(js|jsx|mjs|css|json)$)': resolve(
-        'config/jest/fileTransform.js'
-      ),
+      '^(?!.*\\.(js|jsx|css|json)$)': resolve('config/jest/fileTransform.js'),
     },
     transformIgnorePatterns: [
-      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$',
+      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
+      '^.+\\.module\\.(css|sass|scss)$',
     ],
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
+      '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
     },
-    moduleFileExtensions: [
-      'web.ts',
-      'ts',
-      'web.tsx',
-      'tsx',
-      'web.js',
-      'js',
-      'web.jsx',
-      'jsx',
-      'json',
-      'node',
-      'mjs',
-    ],
     globals: {
       'ts-jest': {
         tsConfigFile: paths.appTsTestConfig,
       },
     },
+    moduleFileExtensions: ['web.ts', 'ts', 'web.tsx', 'tsx', 'web.js', 'js', 'web.jsx', 'jsx', 'json', 'node'],
   };
   if (rootDir) {
     config.rootDir = rootDir;
@@ -76,8 +64,10 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'collectCoverageFrom',
     'coverageReporters',
     'coverageThreshold',
+    'resetMocks',
+    'resetModules',
     'snapshotSerializers',
-    'moduleNameMapper',
+    'watchPathIgnorePatterns',
   ];
   if (overrides) {
     supportedKeys.forEach(key => {
@@ -88,25 +78,44 @@ module.exports = (resolve, rootDir, isEjecting) => {
     });
     const unsupportedKeys = Object.keys(overrides);
     if (unsupportedKeys.length) {
-      console.error(
-        chalk.red(
-          'Out of the box, Create React App only supports overriding ' +
-            'these Jest options:\n\n' +
-            supportedKeys.map(key => chalk.bold('  \u2022 ' + key)).join('\n') +
-            '.\n\n' +
-            'These options in your package.json Jest configuration ' +
-            'are not currently supported by Create React App:\n\n' +
-            unsupportedKeys
-              .map(key => chalk.bold('  \u2022 ' + key))
-              .join('\n') +
-            '\n\nIf you wish to override other Jest options, you need to ' +
-            'eject from the default setup. You can do so by running ' +
-            chalk.bold('npm run eject') +
-            ' but remember that this is a one-way operation. ' +
-            'You may also file an issue with Create React App to discuss ' +
-            'supporting more options out of the box.\n'
-        )
-      );
+      const isOverridingSetupFile =
+        unsupportedKeys.indexOf('setupTestFrameworkScriptFile') > -1;
+
+      if (isOverridingSetupFile) {
+        console.error(
+          chalk.red(
+            'We detected ' +
+              chalk.bold('setupTestFrameworkScriptFile') +
+              ' in your package.json.\n\n' +
+              'Remove it from Jest configuration, and put the initialization code in ' +
+              chalk.bold('src/setupTests.js') +
+              '.\nThis file will be loaded automatically.\n'
+          )
+        );
+      } else {
+        console.error(
+          chalk.red(
+            '\nOut of the box, Create React App only supports overriding ' +
+              'these Jest options:\n\n' +
+              supportedKeys
+                .map(key => chalk.bold('  \u2022 ' + key))
+                .join('\n') +
+              '.\n\n' +
+              'These options in your package.json Jest configuration ' +
+              'are not currently supported by Create React App:\n\n' +
+              unsupportedKeys
+                .map(key => chalk.bold('  \u2022 ' + key))
+                .join('\n') +
+              '\n\nIf you wish to override other Jest options, you need to ' +
+              'eject from the default setup. You can do so by running ' +
+              chalk.bold('npm run eject') +
+              ' but remember that this is a one-way operation. ' +
+              'You may also file an issue with Create React App to discuss ' +
+              'supporting more options out of the box.\n'
+          )
+        );
+      }
+
       process.exit(1);
     }
   }
