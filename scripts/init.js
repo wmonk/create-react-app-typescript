@@ -168,6 +168,7 @@ module.exports = function(
     '@types/react',
     '@types/react-dom',
     '@types/jest',
+    '@types/webpack',
     'typescript',
   ];
 
