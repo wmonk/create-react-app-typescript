@@ -64,7 +64,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     ],
     globals: {
       'ts-jest': {
-        tsConfigFile: paths.appTsTestConfig,
+        tsConfig: paths.appTsTestConfig,
       },
     },
   };
