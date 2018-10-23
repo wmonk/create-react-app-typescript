@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as styles from './App.css';
+import * as styles from './App.module.css';
 import logo from './logo.svg';
 
 class App extends React.Component {
