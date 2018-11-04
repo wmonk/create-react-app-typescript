@@ -25,6 +25,16 @@ yarn start
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
 When you’re ready to deploy to production, create a minified bundle with `npm run build`.
 
+## Differences between CRA and CRA-TS
+
+|  | CRA-TS | CRA 2.1.1 |
+|---|:-:|:-:|
+| Namespaces | ✅ | ❌ |
+|  `baseUrl`/`paths` | ✅ | ❌ |
+|  Casting with `<Type>expression` | ✅ | ❌ |
+| Type-Checking | Same process | Separate process |
+|  Transpilation | TypeScript | Babel |
+
 ## Migration
 
 In general, most upgrades won't require any migration steps to work, but if you experience problems after an upgrade, please file an issue, and we'll add it to the list of migration steps below.
