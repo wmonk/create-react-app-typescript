@@ -81,6 +81,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     'resetMocks',
     'resetModules',
     'snapshotSerializers',
+    'moduleNameMapper',
     'watchPathIgnorePatterns',
   ];
   if (overrides) {
