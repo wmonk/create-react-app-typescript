@@ -1,3 +1,12 @@
+### ⛔ DEPRECATED ⛔
+`create-react-app` now supports typescript natively - [read the guide for adding typescript](https://facebook.github.io/create-react-app/docs/adding-typescript) to existing projects.
+
+For existing `react-scripts-ts` users who would like to upgrade, [follow this guide](https://vincenttunru.com/migrate-create-react-app-typescript-to-create-react-app/).
+
+I have chosen to archive this repository, if you need to contact me, i'm on twitter @willmonk.
+
+---
+
 # `react-scripts-ts` [![npm version](https://badge.fury.io/js/react-scripts-ts.svg)](https://badge.fury.io/js/react-scripts-ts) [![Build Status](https://travis-ci.org/wmonk/create-react-app-typescript.svg?branch=master)](https://travis-ci.org/wmonk/create-react-app-typescript)
 
 Create React apps (with Typescript) with no build configuration.
