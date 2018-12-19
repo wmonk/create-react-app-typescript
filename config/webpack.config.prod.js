@@ -188,6 +188,11 @@ module.exports = {
               },
             ],
           },
+          // The GraphQL loader preprocesses GraphQL queries in .graphql files.
+          {
+            test: /\.(graphql)$/,
+            loader: 'graphql-tag/loader',
+          },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

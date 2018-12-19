@@ -39,7 +39,8 @@ module.exports = (resolve, rootDir, isEjecting) => {
         : resolve('config/jest/babelTransform.js'),
       '^.+\\.tsx?$': resolve('config/jest/typescriptTransform.js'),
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
-      '^(?!.*\\.(js|jsx|mjs|css|json)$)': resolve(
+      '^.+\\.(graphql)$': resolve('config/jest/graphqlTransform.js'),
+      '^(?!.*\\.(js|jsx|mjs|css|json|graphql)$)': resolve(
         'config/jest/fileTransform.js'
       ),
     },
