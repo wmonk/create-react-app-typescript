@@ -22,8 +22,11 @@
   },
   "dependencies": {
     "autoprefixer": "7.1.6",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "7.1.2",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react-app": "^3.1.2",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
